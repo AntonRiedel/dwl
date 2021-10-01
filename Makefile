@@ -12,7 +12,7 @@ LDLIBS += $(foreach p,$(PKGS),$(shell pkg-config --libs $(p)))
 all: dwl
 
 clean:
-	rm -f dwl *.o *-protocol.h *-protocol.c
+	rm -f dwl *.o *-protocol.h *-protocol.c config.h
 
 install: dwl
 	install -D dwl $(PREFIX)/bin/dwl
@@ -55,7 +55,7 @@ idle-protocol.c:
 
 idle-protocol.o: idle-protocol.h
 
-config.h: | config.def.h
+config.h: config.def.h
 	cp config.def.h $@
 
 dwl.o: config.mk config.h client.h xdg-shell-protocol.h wlr-layer-shell-unstable-v1-protocol.h idle-protocol.h
